@@ -41,3 +41,10 @@ import NodeOs from 'react-native-node-os';
 // TODO: What to do with the module?
 NodeOs;
 ```
+
+## API Compatibility
+
+### Node.js
+
+Node.js v12.10.0
+https://nodejs.org/api/os.html
