@@ -8,21 +8,20 @@
  * https://github.com/facebook/react-native
  */
 
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 import NodeOs from 'react-native-node-os';
 
-export default class App extends Component<{}> {
+export default class App extends Component {
   state = {
     status: 'starting',
-    message: '--'
+    message: '--',
   };
+
   componentDidMount() {
-    NodeOs.sampleMethod('Testing', 123, (message) => {
-      this.setState({
-        status: 'native callback received',
-        message
-      });
+    this.setState({
+      status: 'native callback received',
+      message: '' + NodeOs.EOL,
     });
   }
   render() {
