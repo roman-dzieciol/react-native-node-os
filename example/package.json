@@ -8,7 +8,8 @@
     "test-ci": "jest --maxWorkers=2 --ci --reporters=\"default\" --reporters=\"jest-junit\"",
     "lint": "eslint .",
     "prettier": "prettier --loglevel debug --write \"./**/*.js\" \"./**/*.md\"",
-    "format-check": "prettier --list-different \"./**/*.js\" \"./**/*.md\""
+    "format-check": "prettier --list-different \"./**/*.js\" \"./**/*.md\"",
+    "postinstall": "node ../scripts/examples_postinstall.js"
   },
   "dependencies": {
     "react": "16.8.3",
