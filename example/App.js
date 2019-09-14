@@ -21,7 +21,7 @@ export default class App extends Component {
   componentDidMount() {
     this.setState({
       status: 'native callback received',
-      message: '' + NodeOs.EOL,
+      message: '' + NodeOs.constants.priority.PRIORITY_ABOVE_NORMAL,
     });
   }
   render() {
