@@ -22,6 +22,14 @@
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
+  "files": [
+    "/android/src/main/java/",
+    "/android/src/AndroidManifest.xml",
+    "/android/build.gradle",
+    "/ios",
+    "index.js",
+    "react-native-node-os.podspec"  
+  ],
   "peerDependencies": {
     "react-native": ">=0.59.0-rc.0 <1.0.x"
   },
