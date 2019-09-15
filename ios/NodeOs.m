@@ -4,7 +4,7 @@
 
 @implementation NodeOs
 
-RCT_EXPORT_MODULE(os)
+RCT_EXPORT_MODULE(NodeOs)
 
 + (BOOL)requiresMainQueueSetup {
     return YES;
@@ -32,11 +32,11 @@ RCT_EXPORT_MODULE(os)
                         @"SIGALRM": @SIGALRM, // Sent to a process when a system timer elapses.
                         @"SIGTERM": @SIGTERM, // Sent to a process to request termination.
                         @"SIGCHLD": @SIGCHLD, // Sent to a process when a child process terminates.
-                        @"SIGSTKFLT": [NSNull null], // Sent to a process to indicate a stack fault on a coprocessor.
+                        //@"SIGSTKFLT": [NSNull null], // Sent to a process to indicate a stack fault on a coprocessor.
                         @"SIGCONT": @SIGCONT, // Sent to instruct the operating system to continue a paused process.
                         @"SIGSTOP": @SIGSTOP, // Sent to instruct the operating system to halt a process.
                         @"SIGTSTP": @SIGTSTP, // Sent to a process to request it to stop.
-                        @"SIGBREAK": [NSNull null], // Sent to indicate when a user wishes to interrupt a process.
+                        //@"SIGBREAK": [NSNull null], // Sent to indicate when a user wishes to interrupt a process.
                         @"SIGTTIN": @SIGTTIN, // Sent to a process when it reads from the TTY while in the background.
                         @"SIGTTOU": @SIGTTOU, // Sent to a process when it writes to the TTY while in the background.
                         @"SIGURG": @SIGURG, // Sent to a process when a socket has urgent data to read.
@@ -46,12 +46,12 @@ RCT_EXPORT_MODULE(os)
                         @"SIGPROF": @SIGPROF, // Sent to a process when a system timer has elapsed.
                         @"SIGWINCH": @SIGWINCH, // Sent to a process when the controlling terminal has changed its size.
                         @"SIGIO": @SIGIO, // Sent to a process when I/O is available.
-                        @"SIGPOLL": [NSNull null], // Synonym for SIGIO
-                        @"SIGLOST": [NSNull null], // Sent to a process when a file lock has been lost.
-                        @"SIGPWR": [NSNull null], // Sent to a process to notify of a power failure.
+                        @"SIGPOLL": @SIGIO, // Synonym for SIGIO
+                        //@"SIGLOST": [NSNull null], // Sent to a process when a file lock has been lost.
+                        //@"SIGPWR": [NSNull null], // Sent to a process to notify of a power failure.
                         @"SIGINFO": @SIGINFO, // Synonym for SIGPWR
                         @"SIGSYS": @SIGSYS, // Sent to a process to notify of a bad argument.
-                        @"SIGUNUSED": [NSNull null], // Synonym for SIGSYS
+                        @"SIGUNUSED": @SIGSYS, // Synonym for SIGSYS
                 },
                 @"errno": @{
                         @"E2BIG": @E2BIG, // Indicates that the list of arguments is longer than expected.
@@ -139,7 +139,7 @@ RCT_EXPORT_MODULE(os)
                         @"RTLD_NOW": @RTLD_NOW, // Resolve all undefined symbols in the library before dlopen(3) returns.
                         @"RTLD_GLOBAL": @RTLD_GLOBAL, // Symbols defined by the library will be made available for symbol resolution of subsequently loaded libraries.
                         @"RTLD_LOCAL": @RTLD_LOCAL, // The converse of RTLD_GLOBAL. This is the default behavior if neither flag is specified.
-                        @"RTLD_DEEPBIND": [NSNull null], // Make a self-contained library use its own symbols in preference to symbols from previously loaded libraries.
+                        //@"RTLD_DEEPBIND": [NSNull null], // Make a self-contained library use its own symbols in preference to symbols from previously loaded libraries.
                         
                 },
                 @"priority": @{
@@ -153,7 +153,6 @@ RCT_EXPORT_MODULE(os)
                 },
         },
     };
-    
 }
 
 @end

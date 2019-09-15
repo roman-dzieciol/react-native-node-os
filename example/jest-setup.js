@@ -206,7 +206,7 @@ const mockPriority = {
 };
 
 jest.mock('NativeModules', () => ({
-  os: {
+  NodeOs: {
     EOL: '\n',
     arch: jest.fn(() => {
       return 'x64';
