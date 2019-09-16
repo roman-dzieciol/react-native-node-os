@@ -3,18 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache --verbose",
     "test": "jest",
     "test-ci": "jest --maxWorkers=2 --ci --reporters=\"default\" --reporters=\"jest-junit\"",
     "lint": "eslint .",
     "prettier": "prettier --loglevel debug --write \"./**/*.js\" \"./**/*.md\"",
     "format-check": "prettier --list-different \"./**/*.js\" \"./**/*.md\"",
-    "postinstall": "node ../scripts/examples_postinstall.js"
+    "android": "react-native run-android --verbose --no-packager",
+    "log-android": "react-native log-android",
+    "ios": "react-native run-ios --verbose --no-packager",
+    "postinstall": "rm -rf node_modules/react-native-node-os/node_modules/"
   },
   "dependencies": {
     "react": "16.8.3",
     "react-native": "0.59",
-    "react-native-node-os": "file:../"
+    "react-native-node-os": "./.."
   },
   "devDependencies": {
     "@babel/core": "7.6.0",
