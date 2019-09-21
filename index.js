@@ -219,7 +219,7 @@ const NodeOsJS = {
     freemem: NodeOs.freemem,
     getPriority: NodeOs.getPriority,
     homedir: () => { return NodeOs._cached.homedir },
-    hostname: () => { return NodeOs._cached.hostname },
+    hostname: NodeOs.hostname,
     loadavg: NodeOs.loadavg,
     networkInterfaces: networkInterfaces,
     platform: () => { return NodeOs._cached.platform },
