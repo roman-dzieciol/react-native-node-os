@@ -61,6 +61,7 @@
 #elif TARGET_CPU_ARM64
     return @"arm64";
 #else
+    [self.diagnostics logError:@"Unknown arch" in:@"arch"];
     return [NSNull null];
 #endif
 }
@@ -90,6 +91,7 @@
 #elif TARGET_RT_BIG_ENDIAN
     return @"BE";
 #else
+    [self.diagnostics logError:@"Unknown environment" in:@"endianness"];
     return [NSNull null];
 #endif
 }
