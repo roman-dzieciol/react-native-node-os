@@ -206,4 +206,18 @@
     return @([[NSProcessInfo processInfo] systemUptime]);;
 }
 
+- (NSDictionary*)userInfo:(NSDictionary*)options {
+    if (options && options.count != 0) {
+        [self.diagnostics logError:@"Options not supported" in:@"userInfo"];
+    }
+    auto userInfo = nodeos::GetUserInfo();
+    return @{
+             @"username": [NSString stringWithUTF8String:userInfo.username.c_str()],
+             @"uid": [NSString stringWithUTF8String:userInfo.uid.c_str()],
+             @"gid": [NSString stringWithUTF8String:userInfo.gid.c_str()],
+             @"shell": [NSString stringWithUTF8String:userInfo.shell.c_str()],
+             @"homedir": [NSString stringWithUTF8String:userInfo.homedir.c_str()],
+             };
+}
+
 @end

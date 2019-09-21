@@ -31,6 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)tmpdir;
 - (NSNumber*)totalmem;
 - (NSNumber*)uptime;
+- (NSDictionary*)userInfo:(NSDictionary*)options;
 
 @end
 

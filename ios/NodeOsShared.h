@@ -49,6 +49,14 @@ namespace nodeos {
         Times times;
     };
     
+    struct UserInfo {
+        std::string username;
+        std::string uid;
+        std::string gid;
+        std::string shell;
+        std::string homedir;
+    };
+    
     extern std::vector<Cpu> GetCpus();
     extern nodeos::Network::Interfaces GetNetworkInterfaces();
     extern uint64_t GetFreeMemory();
@@ -56,5 +64,6 @@ namespace nodeos {
     extern std::string GetRelease();
     extern std::string GetSysName();
     extern uint64_t GetTotalMemory();
+    extern UserInfo GetUserInfo();
 
 }

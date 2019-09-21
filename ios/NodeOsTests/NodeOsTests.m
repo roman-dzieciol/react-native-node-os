@@ -53,5 +53,14 @@
     
 }
 
+- (void)testUserInfo {
+    NodeOsiOS* ios = [[NodeOsiOS alloc] initWithDiagnostics:self];
+    NSDictionary* result = [ios userInfo:@{}];
+    XCTAssertTrue([result[@"username"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([result[@"uid"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([result[@"gid"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([result[@"homedir"] isKindOfClass:[NSString class]]);
+    XCTAssertTrue([result[@"shell"] isKindOfClass:[NSString class]]);
+}
 
 @end

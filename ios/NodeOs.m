@@ -57,6 +57,10 @@ RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(uptime, NSNumber*, uptime) {
     return [self.ios uptime];
 }
 
+RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(userInfo, NSDictionary*, userInfo:(NSDictionary*)options) {
+    return [self.ios userInfo:options];
+}
+
 - (void)logError:(nonnull NSString *)errorString in:(nonnull NSString *)method {
     RCTLogError(@"Could not get %@: %@", method, errorString);
 }
