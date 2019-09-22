@@ -42,6 +42,7 @@
             XCTAssertNotEqual([info[@"address"] length], 0);
             XCTAssertNotEqual([info[@"family"] length], 0);
             XCTAssertNotEqual([info[@"netmask"] length], 0);
+            XCTAssertNotEqual([info[@"cidr"] length], 0);
             XCTAssertTrue([info[@"internal"] isKindOfClass:[NSNumber class]]);
         }
     }

@@ -141,70 +141,6 @@ const priority = {
     PRIORITY_HIGHEST: NodeOs.constants.priority.PRIORITY_HIGHEST,           // The highest process scheduling priority. This corresponds to REALTIME_PRIORITY_CLASS on Windows, and a nice value of -20 on all other platforms.
 };
 
-
-// Returns the number of ones in the binary representation of the decimal
-// number.
-function countBinaryOnes(n) {
-    let count = 0;
-    // Remove one "1" bit from n until n is the power of 2. This iterates k times
-    // while k is the number of "1" in the binary representation.
-    // For more check https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
-    while (n !== 0) {
-      n = n & (n - 1);
-      count++;
-    }
-    return count;
-  }
-  
-  function getCIDR({ address, netmask, family }) {
-    let ones = 0;
-    let split = '.';
-    let range = 10;
-    let groupLength = 8;
-    let hasZeros = false;
-  
-    if (family === 'IPv6') {
-      split = ':';
-      range = 16;
-      groupLength = 16;
-    }
-  
-    const parts = netmask.split(split);
-    for (var i = 0; i < parts.length; i++) {
-      if (parts[i] !== '') {
-        const binary = parseInt(parts[i], range);
-        const tmp = countBinaryOnes(binary);
-        ones += tmp;
-        if (hasZeros) {
-          if (tmp !== 0) {
-            return null;
-          }
-        } else if (tmp !== groupLength) {
-          if ((binary & 1) !== 0) {
-            return null;
-          }
-          hasZeros = true;
-        }
-      }
-    }
-  
-    return `${address}/${ones}`;
-  }
-  
-  function networkInterfaces() {
-    interfaceAddresses = NodeOs.networkInterfaces();
-  
-    const keys = Object.keys(interfaceAddresses);
-    for (var i = 0; i < keys.length; i++) {
-      const arr = interfaceAddresses[keys[i]];
-      for (var j = 0; j < arr.length; j++) {
-        arr[j].cidr = getCIDR(arr[j]);
-      }
-    }
-  
-    return interfaceAddresses;
-  }
-
 const NodeOsJS = {
     EOL: NodeOs.EOL,
     arch: () => { return NodeOs._cached.arch },
@@ -221,7 +157,7 @@ const NodeOsJS = {
     homedir: () => { return NodeOs._cached.homedir },
     hostname: NodeOs.hostname,
     loadavg: NodeOs.loadavg,
-    networkInterfaces: networkInterfaces,
+    networkInterfaces: NodeOs.networkInterfaces,
     platform: () => { return NodeOs._cached.platform },
     release: () => { return NodeOs._cached.release },
     setPriority: NodeOs.setPriority,

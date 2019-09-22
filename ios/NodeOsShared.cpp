@@ -23,10 +23,12 @@
 #include <net/if_dl.h>
 #include <system_error>
 #include <pwd.h>
+#include <bitset>
 
 namespace nodeos {
     
     std::string GetSockAddrName(struct sockaddr *addr);
+    size_t GetBitCount(struct sockaddr *addr);
 }
 
 std::string nodeos::GetRelease() {
@@ -63,6 +65,22 @@ std::string nodeos::GetSockAddrName(struct sockaddr *addr) {
         return astring;
     } else {
         return "";
+    }
+}
+
+size_t nodeos::GetBitCount(struct sockaddr *addr) {
+    if (addr && addr->sa_family == AF_INET6) {
+        struct sockaddr_in6 sa6 = *((struct sockaddr_in6*) addr);
+        size_t result = 0;
+        for (int i=0; i!=16; ++i) {
+            result += std::bitset<8>(sa6.sin6_addr.__u6_addr.__u6_addr8[i]).count();
+        }
+        return result;
+    } else if (addr && addr->sa_family == AF_INET) {
+        struct sockaddr_in sa = *((struct sockaddr_in*) addr);
+        return std::bitset<32>(sa.sin_addr.s_addr).count();
+    } else {
+        return 0;
     }
 }
 
@@ -108,6 +126,8 @@ nodeos::Network::Interfaces nodeos::GetNetworkInterfaces() {
         } else if (ent->ifa_addr->sa_family == AF_INET) {
             address.family = "IPv4";
         }
+        
+        address.cidr = address.address + "/" + std::to_string(GetBitCount(ent->ifa_netmask));
         
         interface.addresses.push_back(address);
         
