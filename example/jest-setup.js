@@ -208,9 +208,16 @@ const mockPriority = {
 jest.mock('NativeModules', () => ({
   NodeOs: {
     EOL: '\n',
-    arch: jest.fn(() => {
-      return 'x64';
-    }),
+    _cached: {
+      arch: 'x64',
+      endianness: 'BE',
+      homedir: 'HOME',
+      platform: 'darwin',
+      release: 'release',
+      tmpdir: 'tmp',
+      totalmem: 42,
+      type: 'Darwin',
+    },
     constants: {
       signals: mockSignals,
       errno: mockErrno,
@@ -220,17 +227,11 @@ jest.mock('NativeModules', () => ({
     cpus: jest.fn(() => {
       return mockCpus;
     }),
-    endianness: jest.fn(() => {
-      return 'BE';
-    }),
     freemem: jest.fn(() => {
       return 42;
     }),
     getPriority: jest.fn(pid => {
       return 1;
-    }),
-    homedir: jest.fn(() => {
-      return 'HOME';
     }),
     hostname: jest.fn(() => {
       return 'hostname';
@@ -241,22 +242,7 @@ jest.mock('NativeModules', () => ({
     networkInterfaces: jest.fn(() => {
       return mockNetworkInterfaces;
     }),
-    platform: jest.fn(() => {
-      return 'darwin';
-    }),
-    release: jest.fn(() => {
-      return 'release';
-    }),
     setPriority: jest.fn((pid, priority) => {}),
-    tmpdir: jest.fn(() => {
-      return 'tmp';
-    }),
-    totalmem: jest.fn(() => {
-      return 42;
-    }),
-    type: jest.fn(() => {
-      return 'Darwin';
-    }),
     uptime: jest.fn(() => {
       return 42;
     }),
