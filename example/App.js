@@ -201,6 +201,7 @@ const _sections = [
       {key: 'cpus', value: '' + JSON.stringify(NodeOs.cpus())},
       {key: 'endianness', value: '' + NodeOs.endianness()},
       {key: 'freemem', value: '' + NodeOs.freemem()},
+      {key: 'getPriority', value: '' + NodeOs.getPriority(0)},
       {key: 'homedir', value: '' + NodeOs.homedir()},
       {key: 'hostname', value: '' + NodeOs.hostname()},
       {key: 'loadavg', value: '' + NodeOs.loadavg()},

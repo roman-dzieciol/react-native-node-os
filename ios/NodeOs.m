@@ -41,6 +41,11 @@ RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(freemem, NSNumber*, freemem) {
     return [self.ios freemem];
 }
 
+RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(getPriority, NSNumber*, getPriority:(NSInteger)pid) {
+    [self logWarning:@"getPriority: not implemented"];
+    return nil;
+}
+
 RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(hostname, NSString*, hostname) {
     return [self.ios hostname];
 }
@@ -51,6 +56,11 @@ RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(loadavg, NSArray*, loadavg) {
 
 RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(networkInterfaces, NSDictionary*, networkInterfaces) {
     return [self.ios networkInterfaces];
+}
+
+RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(setPriority, id, setPriority:(NSInteger)pid priority:(NSInteger)priority) {
+    [self logWarning:@"setPriority: not implemented"];
+    return nil;
 }
 
 RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(uptime, NSNumber*, uptime) {
