@@ -61,7 +61,7 @@
 #elif TARGET_CPU_ARM64
     return @"arm64";
 #else
-    [self.diagnostics logError:@"Unknown arch" in:@"arch"];
+    [self.diagnostics logError:@"arch: Unknown arch"];
     return [NSNull null];
 #endif
 }
@@ -91,7 +91,7 @@
 #elif TARGET_RT_BIG_ENDIAN
     return @"BE";
 #else
-    [self.diagnostics logError:@"Unknown environment" in:@"endianness"];
+    [self.diagnostics logError:@"endianness: Unknown environment"];
     return [NSNull null];
 #endif
 }
@@ -104,7 +104,7 @@
     try {
         return @(nodeos::GetFreeMemory());
     } catch (std::exception& e) {
-        [self.diagnostics logError:[NSString stringWithUTF8String:e.what()] in:@"freemem"];
+        [self.diagnostics logError:@"freemem: %@", [NSString stringWithUTF8String:e.what()]];
         return nil;
     }
 }
@@ -124,7 +124,7 @@
                  @(loadAvg[1]),
                  @(loadAvg[2])];
     } catch (std::exception& e) {
-        [self.diagnostics logError:[NSString stringWithUTF8String:e.what()] in:@"loadavg"];
+        [self.diagnostics logError:@"loadavg: %@", [NSString stringWithUTF8String:e.what()]];
         return nil;
     }
 }
@@ -164,7 +164,7 @@
         return result;
         
     } catch (std::exception& e) {
-        [self.diagnostics logError:[NSString stringWithUTF8String:e.what()] in:@"loadavg"];
+        [self.diagnostics logError:@"loadavg: %@", [NSString stringWithUTF8String:e.what()]];
         return nil;
     }
 }
@@ -177,7 +177,7 @@
     try {
         return [NSString stringWithCString:nodeos::GetRelease().c_str() encoding:NSUTF8StringEncoding];
     } catch (std::exception& e) {
-        [self.diagnostics logError:[NSString stringWithUTF8String:e.what()] in:@"release"];
+        [self.diagnostics logError:@"release: %@", [NSString stringWithUTF8String:e.what()]];
         return nil;
     }
 }
@@ -186,7 +186,7 @@
     try {
         return [NSString stringWithCString:nodeos::GetSysName().c_str() encoding:NSUTF8StringEncoding];
     } catch (std::exception& e) {
-        [self.diagnostics logError:[NSString stringWithUTF8String:e.what()] in:@"sysname"];
+        [self.diagnostics logError:@"sysname: %@", [NSString stringWithUTF8String:e.what()]];
         return nil;
     }
 }
@@ -199,7 +199,7 @@
     try {
         return @(nodeos::GetTotalMemory());
     } catch (std::exception& e) {
-        [self.diagnostics logError:[NSString stringWithUTF8String:e.what()] in:@"totalmem"];
+        [self.diagnostics logError:@"totalmem: %@", [NSString stringWithUTF8String:e.what()]];
         return nil;
     }
 }
@@ -210,7 +210,7 @@
 
 - (NSDictionary*)userInfo:(NSDictionary*)options {
     if (options && options.count != 0) {
-        [self.diagnostics logError:@"Options not supported" in:@"userInfo"];
+        [self.diagnostics logError:@"userInfo: Options not supported"];
     }
     auto userInfo = nodeos::GetUserInfo();
     return @{

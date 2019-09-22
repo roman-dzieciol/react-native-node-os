@@ -61,8 +61,20 @@ RCT_REMAP_BLOCKING_SYNCHRONOUS_METHOD(userInfo, NSDictionary*, userInfo:(NSDicti
     return [self.ios userInfo:options];
 }
 
-- (void)logError:(nonnull NSString *)errorString in:(nonnull NSString *)method {
-    RCTLogError(@"Could not get %@: %@", method, errorString);
+- (void)logError:(nonnull NSString *)format, ... NS_FORMAT_FUNCTION(1,2) {
+    va_list args;
+    va_start(args, format);
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    RCTLogError(@"%@", message);
+}
+
+- (void)logWarning:(nonnull NSString *)format, ... NS_FORMAT_FUNCTION(1,2) {
+    va_list args;
+    va_start(args, format);
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    RCTLogWarn(@"%@", message);
 }
 
 @end

@@ -11,7 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol NodeOsDiagnostics
 
-- (void)logError:(NSString*)errorString in:(NSString*)method;
+- (void)logError:(nonnull NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
+- (void)logWarning:(nonnull NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
 
 @end
 

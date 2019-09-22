@@ -15,8 +15,20 @@
 
 @implementation NodeOsTests
 
-- (void)logError:(NSString*)errorString in:(NSString*)method {
-    XCTFail(@"%@: %@", method, errorString);
+- (void)logError:(nonnull NSString *)format, ... NS_FORMAT_FUNCTION(1,2) {
+    va_list args;
+    va_start(args, format);
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    XCTFail(@"%@", message);
+}
+
+- (void)logWarning:(nonnull NSString *)format, ... NS_FORMAT_FUNCTION(1,2) {
+    va_list args;
+    va_start(args, format);
+    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
+    va_end(args);
+    XCTFail(@"%@", message);
 }
 
 - (void)testNetworkInterfaces {
