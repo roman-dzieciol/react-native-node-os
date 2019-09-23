@@ -17,7 +17,7 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
     public NodeOsModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
-        this.implementation = new NodeOsAndroid();
+        this.implementation = new NodeOsAndroid(reactContext);
     }
 
     @Override
@@ -195,7 +195,7 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
-    public Integer freemem() {
+    public Double freemem() {
         return implementation.freemem();
     }
 

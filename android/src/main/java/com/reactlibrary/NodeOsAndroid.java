@@ -1,15 +1,21 @@
 package com.reactlibrary;
 
 
+import android.content.Context;
+import android.os.SystemClock;
+
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 
+import java.nio.ByteOrder;
 import java.util.Map;
 
 final class NodeOsAndroid {
 
-    public NodeOsAndroid() {
+    private final Context context;
 
+    public NodeOsAndroid(Context context) {
+        this.context = context;
     }
 
     public Map<String, Object> getConstants() {
@@ -17,7 +23,7 @@ final class NodeOsAndroid {
     }
 
     public String arch() {
-        return null;
+        return System.getProperty("os.arch");
     }
 
     public ReadableArray cpus() {
@@ -25,19 +31,23 @@ final class NodeOsAndroid {
     }
 
     public String endianness() {
-        return null;
+        if (ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) {
+            return "BE";
+        } else {
+            return "LE";
+        }
     }
 
     public String eol() {
-        return null;
+        return "\n";
     }
 
-    public Integer freemem() {
-        return null;
+    public Double freemem() {
+        return new Double(Runtime.getRuntime().freeMemory());
     }
 
     public String homedir() {
-        return null;
+        return context.getFilesDir().getAbsolutePath();
     }
 
     public String hostname() {
@@ -65,15 +75,15 @@ final class NodeOsAndroid {
     }
 
     public String tmpdir() {
-        return null;
+        return context.getCacheDir().getAbsolutePath();
     }
 
-    public Integer totalmem() {
-        return null;
+    public Double totalmem() {
+        return new Double(Runtime.getRuntime().totalMemory());
     }
 
     public Double uptime() {
-        return null;
+        return new Double(SystemClock.uptimeMillis());
     }
 
     public ReadableMap userInfo() {
