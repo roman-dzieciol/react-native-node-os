@@ -1,27 +1,23 @@
 package com.reactlibrary;
 
-import com.facebook.react.bridge.Dynamic;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
-import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.common.MapBuilder;
 
-import java.util.ArrayList;
 import java.util.Map;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class NodeOsModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
+    private final NodeOsAndroid implementation;
 
     public NodeOsModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
+        this.implementation = new NodeOsAndroid();
     }
 
     @Override
@@ -156,12 +152,12 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
     }
 
     private Map<String, Object> getConstantsDlOpen() {
-       final Map<String, Object> dlopen = MapBuilder.newHashMap();
-    //    dlopen.put("RTLD_NOW", RTLD_NOW); // Resolve all undefined symbols in the library before dlopen(3) returns.
-    //    dlopen.put("RTLD_GLOBAL", RTLD_GLOBAL); // Symbols defined by the library will be made available for symbol resolution of subsequently loaded libraries.
-    //    dlopen.put("RTLD_LOCAL", RTLD_LOCAL); // The converse of RTLD_GLOBAL. This is the default behavior if neither flag is specified.
-    //    dlopen.put("RTLD_DEEPBIND", RTLD_DEEPBIND); // Make a self-contained library use its own symbols in preference to symbols from previously loaded libraries.
-       return dlopen;
+        final Map<String, Object> dlopen = MapBuilder.newHashMap();
+        //    dlopen.put("RTLD_NOW", RTLD_NOW); // Resolve all undefined symbols in the library before dlopen(3) returns.
+        //    dlopen.put("RTLD_GLOBAL", RTLD_GLOBAL); // Symbols defined by the library will be made available for symbol resolution of subsequently loaded libraries.
+        //    dlopen.put("RTLD_LOCAL", RTLD_LOCAL); // The converse of RTLD_GLOBAL. This is the default behavior if neither flag is specified.
+        //    dlopen.put("RTLD_DEEPBIND", RTLD_DEEPBIND); // Make a self-contained library use its own symbols in preference to symbols from previously loaded libraries.
+        return dlopen;
     }
 
     private Map<String, Object> getConstantsPriority() {
@@ -195,12 +191,12 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod(isBlockingSynchronousMethod = true)
     public ReadableArray cpus() {
-        return null;
+        return implementation.cpus();
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
     public Integer freemem() {
-        return null;
+        return implementation.freemem();
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
@@ -210,17 +206,17 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod(isBlockingSynchronousMethod = true)
     public String hostname() {
-        return null;
+        return implementation.hostname();
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
     public ReadableArray loadavg() {
-        return null;
+        return implementation.loadavg();
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
     public ReadableMap networkInterfaces() {
-        return null;
+        return implementation.networkInterfaces();
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
@@ -229,11 +225,11 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod(isBlockingSynchronousMethod = true)
     public Double uptime() {
-        return null;
+        return implementation.uptime();
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
-    public ReadableMap userInfo() {
-        return null;
+    public ReadableMap userInfo(ReadableMap options) {
+        return implementation.userInfo();
     }
 }
