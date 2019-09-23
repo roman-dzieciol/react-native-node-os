@@ -1,10 +1,19 @@
 package com.reactlibrary;
 
+import com.facebook.react.bridge.Dynamic;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.ReadableType;
 import com.facebook.react.common.MapBuilder;
 
+import java.util.ArrayList;
 import java.util.Map;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class NodeOsModule extends ReactContextBaseJavaModule {
 
@@ -184,8 +193,47 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
         return result;
     }
 
-    @Override
-    public boolean hasConstants() {
-        return true;
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public ReadableArray cpus() {
+        return null;
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public Integer freemem() {
+        return null;
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public Integer getPriority(Integer pid) {
+        return null;
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public String hostname() {
+        return null;
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public ReadableArray loadavg() {
+        return null;
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public ReadableMap networkInterfaces() {
+        return null;
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public void setPriority(Integer pid, Integer priority) {
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public Double uptime() {
+        return null;
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public ReadableMap userInfo() {
+        return null;
     }
 }
