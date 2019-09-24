@@ -26,9 +26,7 @@ final class NodeOsAndroid {
         return System.getProperty("os.arch");
     }
 
-    public ReadableArray cpus() {
-        return null;
-    }
+    public native ReadableArray cpus();
 
     public String endianness() {
         if (ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN) {
@@ -50,29 +48,17 @@ final class NodeOsAndroid {
         return context.getFilesDir().getAbsolutePath();
     }
 
-    public String hostname() {
-        return null;
-    }
+    public native String hostname();
 
-    public ReadableArray loadavg() {
-        return null;
-    }
+    public native ReadableArray loadavg();
 
-    public ReadableMap networkInterfaces() {
-        return null;
-    }
+    public native ReadableMap networkInterfaces();
 
-    public String osPlatform() {
-        return null;
-    }
+    public native String osPlatform();
 
-    public String osRelease() {
-        return null;
-    }
+    public native String osRelease();
 
-    public String osType() {
-        return null;
-    }
+    public native String osType();
 
     public String tmpdir() {
         return context.getCacheDir().getAbsolutePath();
@@ -86,7 +72,5 @@ final class NodeOsAndroid {
         return new Double(SystemClock.uptimeMillis());
     }
 
-    public ReadableMap userInfo() {
-        return null;
-    }
+    public native ReadableMap userInfo();
 }
