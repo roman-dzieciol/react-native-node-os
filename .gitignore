@@ -40,3 +40,5 @@ local.properties
 buck-out/
 \.buckd/
 *.keystore
+android/.externalNativeBuild
+android/src/main/obj/local/arm64-v8a/objs

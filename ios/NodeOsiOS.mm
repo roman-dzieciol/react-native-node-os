@@ -7,6 +7,7 @@
 
 #import "NodeOsiOS.h"
 #import "NodeOsShared.h"
+#import "NodeOsDarwin.h"
 #import "NodeOsDiagnostics.h"
 #import "NodeOsConstants.h"
 

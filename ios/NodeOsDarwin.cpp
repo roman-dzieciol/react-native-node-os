@@ -5,7 +5,7 @@
 //  Created by Roman Dzieciol on 9/21/19.
 //
 
-#import "NodeOsShared.h"
+#import "NodeOsDarwin.h"
 
 #include <unistd.h>
 #include <stddef.h>
@@ -22,6 +22,8 @@
 #include <sys/types.h>
 #include <net/if_dl.h>
 #include <system_error>
+#include <pwd.h>
+#include <bitset>
 
 namespace nodeos {
     
@@ -47,6 +49,123 @@ namespace nodeos {
     }
     
     std::string GetSockAddrName(struct sockaddr *addr);
+    size_t GetBitCount(struct sockaddr *addr);
+}
+
+
+std::string nodeos::GetSockAddrName(struct sockaddr *addr) {
+    
+    if (!addr) {
+        return "";
+    }
+    
+    if (addr->sa_family == AF_INET6) {
+        struct sockaddr_in6 sa6 = *((struct sockaddr_in6*) addr);
+        char astring[INET6_ADDRSTRLEN];
+        inet_ntop(AF_INET6, &(sa6.sin6_addr), astring, INET6_ADDRSTRLEN);
+        return astring;
+    } else if (addr->sa_family == AF_INET) {
+        struct sockaddr_in sa = *((struct sockaddr_in*) addr);
+        char astring[INET_ADDRSTRLEN];
+        inet_ntop(AF_INET, &(sa.sin_addr), astring, INET_ADDRSTRLEN);
+        return astring;
+    } else {
+        return "";
+    }
+}
+
+size_t nodeos::GetBitCount(struct sockaddr *addr) {
+    if (addr && addr->sa_family == AF_INET6) {
+        struct sockaddr_in6 sa6 = *((struct sockaddr_in6*) addr);
+        size_t result = 0;
+        for (int i=0; i!=16; ++i) {
+            result += std::bitset<8>(sa6.sin6_addr.__u6_addr.__u6_addr8[i]).count();
+        }
+        return result;
+    } else if (addr && addr->sa_family == AF_INET) {
+        struct sockaddr_in sa = *((struct sockaddr_in*) addr);
+        return std::bitset<32>(sa.sin_addr.s_addr).count();
+    } else {
+        return 0;
+    }
+}
+
+nodeos::Network::Interfaces nodeos::GetNetworkInterfaces() {
+    
+    nodeos::Network::Interfaces interfaces;
+    
+    struct ifaddrs* addrs;
+    if (getifaddrs(&addrs) != 0) {
+        throw std::system_error(errno, std::generic_category());
+    }
+    
+    for (struct ifaddrs* ent = addrs; ent != NULL; ent = ent->ifa_next) {
+        
+        if (!((ent->ifa_flags & IFF_UP) && (ent->ifa_flags & IFF_RUNNING)))
+            continue;
+        
+        if (!ent->ifa_addr)
+            continue;
+        
+        std::string name = ent->ifa_name;
+        if (name.empty()) {
+            continue;
+        }
+        
+        if (!(ent->ifa_addr->sa_family == AF_INET6 || ent->ifa_addr->sa_family == AF_INET)) {
+            continue;
+        }
+        
+        nodeos::Network::Interface interface = interfaces[name];
+        interface.name = name;
+        
+        nodeos::Network::Address address;
+        
+        address.address = nodeos::GetSockAddrName(ent->ifa_addr);
+        if (ent->ifa_netmask) {
+            address.netmask = nodeos::GetSockAddrName(ent->ifa_netmask);
+        }
+        address.internal = !!(ent->ifa_flags & IFF_LOOPBACK);
+        
+        if (ent->ifa_addr->sa_family == AF_INET6) {
+            address.family = "IPv6";
+        } else if (ent->ifa_addr->sa_family == AF_INET) {
+            address.family = "IPv4";
+        }
+        
+        address.cidr = address.address + "/" + std::to_string(GetBitCount(ent->ifa_netmask));
+        
+        interface.addresses.push_back(address);
+        
+        if (!interface.addresses.empty()) {
+            interfaces[name] = interface;
+        }
+    }
+    
+    for (struct ifaddrs* ent = addrs; ent != NULL; ent = ent->ifa_next) {
+        
+        if (!((ent->ifa_flags & IFF_UP) && (ent->ifa_flags & IFF_RUNNING)))
+            continue;
+        
+        if (!ent->ifa_addr)
+            continue;
+        
+        std::string name = ent->ifa_name;
+        auto it = interfaces.find(name);
+        if (it == interfaces.end()) {
+            continue;
+        }
+        
+        if (ent->ifa_addr->sa_family == AF_LINK) {
+            char* mac = link_ntoa((struct sockaddr_dl*)(ent->ifa_addr));
+            for (nodeos::Network::Address& address: it->second.addresses) {
+                address.mac = mac;
+            }
+        }
+    }
+    
+    freeifaddrs(addrs);
+    return interfaces;
 }
 
 std::vector<nodeos::Cpu> nodeos::GetCpus() {
@@ -113,3 +232,29 @@ uint64_t nodeos::GetFreeMemory() {
     return (uint64_t) info.free_count * sysconf(_SC_PAGESIZE);
 }
 
+uint64_t nodeos::GetTotalMemory() {
+    
+    uint64_t info;
+    int which[] = {CTL_HW, HW_MEMSIZE};
+    size_t size = sizeof(info);
+    if (sysctl(which, 2, &info, &size, NULL, 0) != 0) {
+        throw std::system_error(errno, std::generic_category());
+    }
+    return info;
+}
+
+std::vector<double> nodeos::GetLoadAvg() {
+    
+    struct loadavg info;
+    size_t size = sizeof(info);
+    int which[] = {CTL_VM, VM_LOADAVG};
+    if (sysctl(which, 2, &info, &size, NULL, 0) < 0) {
+        throw std::system_error(errno, std::generic_category());
+    }
+    
+    return {
+        ((double) info.ldavg[0] / info.fscale),
+        ((double) info.ldavg[1] / info.fscale),
+        ((double) info.ldavg[2] / info.fscale)
+    };
+}

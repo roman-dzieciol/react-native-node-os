@@ -39,8 +39,22 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     lintOptions {
         abortOnError false
+    }
+    
+    externalNativeBuild {
+        ndkBuild {
+            path file("src/main/jni/Android.mk")
+        }
+    }
+
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
     }
 }
 
@@ -62,7 +76,7 @@ dependencies {
     // ref:
     // https://github.com/facebook/react-native/blob/0.61-stable/template/android/app/build.gradle#L192
     //noinspection GradleDynamicVersion
-    implementation 'com.facebook.react:react-native:+'  // From node_modules
+    implementation 'com.facebook.react:react-native:+' // From node_modules
 }
 
 def configureReactNativePom(def pom) {

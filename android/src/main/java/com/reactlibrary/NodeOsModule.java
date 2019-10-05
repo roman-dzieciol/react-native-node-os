@@ -5,6 +5,8 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.MapBuilder;
 
 import java.util.Map;
@@ -13,6 +15,9 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
     private final NodeOsAndroid implementation;
+    static {
+        System.loadLibrary("NodeOsJNI"); //this loads the library when the class is loaded
+    }
 
     public NodeOsModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -183,14 +188,25 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
         constants.put("dlopen", getConstantsDlOpen());
         constants.put("priority", getConstantsPriority());
 
+        final Map<String, Object> cached = MapBuilder.newHashMap();
+        cached.put("arch", implementation.arch());
+        cached.put("endianness", implementation.endianness());
+        cached.put("homedir", implementation.homedir());
+        cached.put("platform", implementation.osPlatform());
+        cached.put("release", implementation.osRelease());
+        cached.put("type", implementation.osType());
+        cached.put("tmpdir", implementation.tmpdir());
+        cached.put("totalmem", implementation.totalmem());
+
         final Map<String, Object> result = MapBuilder.newHashMap();
         result.put("EOL", "\n");
         result.put("constants", constants);
+        result.put("_cached", cached);
         return result;
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
-    public ReadableArray cpus() {
+    public WritableArray cpus() {
         return implementation.cpus();
     }
 
@@ -201,7 +217,7 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
 
     @ReactMethod(isBlockingSynchronousMethod = true)
     public Integer getPriority(Integer pid) {
-        return null;
+        return 0;
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
@@ -210,12 +226,12 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
-    public ReadableArray loadavg() {
+    public WritableArray loadavg() {
         return implementation.loadavg();
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
-    public ReadableMap networkInterfaces() {
+    public WritableMap networkInterfaces() {
         return implementation.networkInterfaces();
     }
 
@@ -229,7 +245,7 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod(isBlockingSynchronousMethod = true)
-    public ReadableMap userInfo(ReadableMap options) {
+    public WritableMap userInfo(ReadableMap options) {
         return implementation.userInfo();
     }
 }
