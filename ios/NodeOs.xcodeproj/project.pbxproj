@@ -7,7 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3E7B58A1CC2AC0600A0062D /* NodeOs.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* NodeOs.m */; };
+		7111A780233564010054B26C /* NodeOsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7111A77F233564010054B26C /* NodeOsTests.m */; };
+		712F6CF523367594000E8956 /* NodeOsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 712F6CEF23367594000E8956 /* NodeOsConstants.m */; };
+		712F6CF623367594000E8956 /* NodeOs.m in Sources */ = {isa = PBXBuildFile; fileRef = 712F6CF223367594000E8956 /* NodeOs.m */; };
+		712F6CF723367594000E8956 /* NodeOsShared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 712F6CF423367594000E8956 /* NodeOsShared.cpp */; };
+		712F6D04233675DC000E8956 /* NodeOsDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 712F6D02233675DC000E8956 /* NodeOsDarwin.cpp */; };
+		712F6D05233675DC000E8956 /* NodeOsDarwin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 712F6D02233675DC000E8956 /* NodeOsDarwin.cpp */; };
+		712F6D06233675DC000E8956 /* NodeOsiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 712F6D03233675DC000E8956 /* NodeOsiOS.mm */; };
+		712F6D07233675DC000E8956 /* NodeOsiOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 712F6D03233675DC000E8956 /* NodeOsiOS.mm */; };
+		712F6D08233675E1000E8956 /* NodeOsShared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 712F6CF423367594000E8956 /* NodeOsShared.cpp */; };
+		712F6D09233675E9000E8956 /* NodeOsConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 712F6CEF23367594000E8956 /* NodeOsConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,12 +33,31 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libNodeOs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNodeOs.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5881CC2AC0600A0062D /* NodeOs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeOs.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* NodeOs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeOs.m; sourceTree = "<group>"; };
+		7111A77F233564010054B26C /* NodeOsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NodeOsTests.m; sourceTree = "<group>"; };
+		7111A781233564010054B26C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		712F6CED23367582000E8956 /* NodeOsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NodeOsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		712F6CEE23367594000E8956 /* NodeOsDiagnostics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeOsDiagnostics.h; sourceTree = "<group>"; };
+		712F6CEF23367594000E8956 /* NodeOsConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeOsConstants.m; sourceTree = "<group>"; };
+		712F6CF023367594000E8956 /* NodeOs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeOs.h; sourceTree = "<group>"; };
+		712F6CF123367594000E8956 /* NodeOsConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeOsConstants.h; sourceTree = "<group>"; };
+		712F6CF223367594000E8956 /* NodeOs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeOs.m; sourceTree = "<group>"; };
+		712F6CF323367594000E8956 /* NodeOsShared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeOsShared.h; sourceTree = "<group>"; };
+		712F6CF423367594000E8956 /* NodeOsShared.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeOsShared.cpp; sourceTree = "<group>"; };
+		712F6D00233675DC000E8956 /* NodeOsDarwin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeOsDarwin.h; sourceTree = "<group>"; };
+		712F6D01233675DC000E8956 /* NodeOsiOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeOsiOS.h; sourceTree = "<group>"; };
+		712F6D02233675DC000E8956 /* NodeOsDarwin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeOsDarwin.cpp; sourceTree = "<group>"; };
+		712F6D03233675DC000E8956 /* NodeOsiOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NodeOsiOS.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		58B511D81A9E6C8500147676 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7111A77A233564010054B26C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -50,10 +78,30 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				B3E7B5881CC2AC0600A0062D /* NodeOs.h */,
-				B3E7B5891CC2AC0600A0062D /* NodeOs.m */,
+				712F6CF023367594000E8956 /* NodeOs.h */,
+				712F6CF223367594000E8956 /* NodeOs.m */,
+				712F6CF123367594000E8956 /* NodeOsConstants.h */,
+				712F6CEF23367594000E8956 /* NodeOsConstants.m */,
+				712F6CEE23367594000E8956 /* NodeOsDiagnostics.h */,
+				712F6CF423367594000E8956 /* NodeOsShared.cpp */,
+				712F6D02233675DC000E8956 /* NodeOsDarwin.cpp */,
+				712F6D00233675DC000E8956 /* NodeOsDarwin.h */,
+				712F6D01233675DC000E8956 /* NodeOsiOS.h */,
+				712F6D03233675DC000E8956 /* NodeOsiOS.mm */,
+				712F6CF323367594000E8956 /* NodeOsShared.h */,
+				7111A77E233564010054B26C /* NodeOsTests */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				712F6CED23367582000E8956 /* NodeOsTests.xctest */,
 			);
+			sourceTree = "<group>";
+		};
+		7111A77E233564010054B26C /* NodeOsTests */ = {
+			isa = PBXGroup;
+			children = (
+				7111A77F233564010054B26C /* NodeOsTests.m */,
+				7111A781233564010054B26C /* Info.plist */,
+			);
+			path = NodeOsTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -76,6 +124,23 @@
 			productReference = 134814201AA4EA6300B7C361 /* libNodeOs.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		7111A77C233564010054B26C /* NodeOsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7111A787233564010054B26C /* Build configuration list for PBXNativeTarget "NodeOsTests" */;
+			buildPhases = (
+				7111A779233564010054B26C /* Sources */,
+				7111A77A233564010054B26C /* Frameworks */,
+				7111A77B233564010054B26C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NodeOsTests;
+			productName = NodeOsTests;
+			productReference = 712F6CED23367582000E8956 /* NodeOsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -88,6 +153,11 @@
 					58B511DA1A9E6C8500147676 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
+					7111A77C233564010054B26C = {
+						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = E54RQ2YKR5;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "NodeOs" */;
@@ -95,6 +165,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -103,16 +174,43 @@
 			projectRoot = "";
 			targets = (
 				58B511DA1A9E6C8500147676 /* NodeOs */,
+				7111A77C233564010054B26C /* NodeOsTests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7111A77B233564010054B26C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E7B58A1CC2AC0600A0062D /* NodeOs.m in Sources */,
+				712F6CF523367594000E8956 /* NodeOsConstants.m in Sources */,
+				712F6D06233675DC000E8956 /* NodeOsiOS.mm in Sources */,
+				712F6CF723367594000E8956 /* NodeOsShared.cpp in Sources */,
+				712F6D04233675DC000E8956 /* NodeOsDarwin.cpp in Sources */,
+				712F6CF623367594000E8956 /* NodeOs.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7111A779233564010054B26C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				712F6D08233675E1000E8956 /* NodeOsShared.cpp in Sources */,
+				712F6D09233675E9000E8956 /* NodeOsConstants.m in Sources */,
+				712F6D05233675DC000E8956 /* NodeOsDarwin.cpp in Sources */,
+				712F6D07233675DC000E8956 /* NodeOsiOS.mm in Sources */,
+				7111A780233564010054B26C /* NodeOsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +264,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/include";
 			};
 			name = Debug;
 		};
@@ -208,6 +307,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SYSTEM_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/include";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -216,7 +316,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
@@ -244,6 +344,60 @@
 			};
 			name = Release;
 		};
+		7111A785233564010054B26C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = E54RQ2YKR5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NodeOsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.roman.NodeOsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7111A786233564010054B26C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = E54RQ2YKR5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = NodeOsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.roman.NodeOsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -261,6 +415,15 @@
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,
 				58B511F11A9E6C8500147676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7111A787233564010054B26C /* Build configuration list for PBXNativeTarget "NodeOsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7111A785233564010054B26C /* Debug */,
+				7111A786233564010054B26C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

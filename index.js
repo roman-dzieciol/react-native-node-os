@@ -143,7 +143,7 @@ const priority = {
 
 const NodeOsJS = {
     EOL: NodeOs.EOL,
-    arch: NodeOs.arch,
+    arch: () => { return NodeOs._cached.arch },
     constants: {
         signals,
         errno,
@@ -151,19 +151,19 @@ const NodeOsJS = {
         priority
     },
     cpus: NodeOs.cpus,
-    endianness: NodeOs.endianness,
+    endianness: () => { return NodeOs._cached.endianness },
     freemem: NodeOs.freemem,
     getPriority: NodeOs.getPriority,
-    homedir: NodeOs.homedir,
+    homedir: () => { return NodeOs._cached.homedir },
     hostname: NodeOs.hostname,
     loadavg: NodeOs.loadavg,
     networkInterfaces: NodeOs.networkInterfaces,
-    platform: NodeOs.platform,
-    release: NodeOs.release,
+    platform: () => { return NodeOs._cached.platform },
+    release: () => { return NodeOs._cached.release },
     setPriority: NodeOs.setPriority,
-    tmpdir: NodeOs.tmpdir,
-    totalmem: NodeOs.totalmem,
-    type: NodeOs.type,
+    tmpdir: () => { return NodeOs._cached.tmpdir },
+    totalmem: () => { return NodeOs._cached.totalmem },
+    type: () => { return NodeOs._cached.type },
     uptime: NodeOs.uptime,
     userInfo: NodeOs.userInfo,
 };

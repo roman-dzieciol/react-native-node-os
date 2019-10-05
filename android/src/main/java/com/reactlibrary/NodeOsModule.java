@@ -2,6 +2,11 @@ package com.reactlibrary;
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
+import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReadableArray;
+import com.facebook.react.bridge.ReadableMap;
+import com.facebook.react.bridge.WritableArray;
+import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.common.MapBuilder;
 
 import java.util.Map;
@@ -9,10 +14,15 @@ import java.util.Map;
 public class NodeOsModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
+    private final NodeOsAndroid implementation;
+    static {
+        System.loadLibrary("NodeOsJNI"); //this loads the library when the class is loaded
+    }
 
     public NodeOsModule(ReactApplicationContext reactContext) {
         super(reactContext);
         this.reactContext = reactContext;
+        this.implementation = new NodeOsAndroid(reactContext);
     }
 
     @Override
@@ -147,12 +157,12 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
     }
 
     private Map<String, Object> getConstantsDlOpen() {
-       final Map<String, Object> dlopen = MapBuilder.newHashMap();
-    //    dlopen.put("RTLD_NOW", RTLD_NOW); // Resolve all undefined symbols in the library before dlopen(3) returns.
-    //    dlopen.put("RTLD_GLOBAL", RTLD_GLOBAL); // Symbols defined by the library will be made available for symbol resolution of subsequently loaded libraries.
-    //    dlopen.put("RTLD_LOCAL", RTLD_LOCAL); // The converse of RTLD_GLOBAL. This is the default behavior if neither flag is specified.
-    //    dlopen.put("RTLD_DEEPBIND", RTLD_DEEPBIND); // Make a self-contained library use its own symbols in preference to symbols from previously loaded libraries.
-       return dlopen;
+        final Map<String, Object> dlopen = MapBuilder.newHashMap();
+        //    dlopen.put("RTLD_NOW", RTLD_NOW); // Resolve all undefined symbols in the library before dlopen(3) returns.
+        //    dlopen.put("RTLD_GLOBAL", RTLD_GLOBAL); // Symbols defined by the library will be made available for symbol resolution of subsequently loaded libraries.
+        //    dlopen.put("RTLD_LOCAL", RTLD_LOCAL); // The converse of RTLD_GLOBAL. This is the default behavior if neither flag is specified.
+        //    dlopen.put("RTLD_DEEPBIND", RTLD_DEEPBIND); // Make a self-contained library use its own symbols in preference to symbols from previously loaded libraries.
+        return dlopen;
     }
 
     private Map<String, Object> getConstantsPriority() {
@@ -178,14 +188,64 @@ public class NodeOsModule extends ReactContextBaseJavaModule {
         constants.put("dlopen", getConstantsDlOpen());
         constants.put("priority", getConstantsPriority());
 
+        final Map<String, Object> cached = MapBuilder.newHashMap();
+        cached.put("arch", implementation.arch());
+        cached.put("endianness", implementation.endianness());
+        cached.put("homedir", implementation.homedir());
+        cached.put("platform", implementation.osPlatform());
+        cached.put("release", implementation.osRelease());
+        cached.put("type", implementation.osType());
+        cached.put("tmpdir", implementation.tmpdir());
+        cached.put("totalmem", implementation.totalmem());
+
         final Map<String, Object> result = MapBuilder.newHashMap();
         result.put("EOL", "\n");
         result.put("constants", constants);
+        result.put("_cached", cached);
         return result;
     }
 
-    @Override
-    public boolean hasConstants() {
-        return true;
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public WritableArray cpus() {
+        return implementation.cpus();
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public Double freemem() {
+        return implementation.freemem();
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public Integer getPriority(Integer pid) {
+        return 0;
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public String hostname() {
+        return implementation.hostname();
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public WritableArray loadavg() {
+        return implementation.loadavg();
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public WritableMap networkInterfaces() {
+        return implementation.networkInterfaces();
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public void setPriority(Integer pid, Integer priority) {
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public Double uptime() {
+        return implementation.uptime();
+    }
+
+    @ReactMethod(isBlockingSynchronousMethod = true)
+    public WritableMap userInfo(ReadableMap options) {
+        return implementation.userInfo();
     }
 }

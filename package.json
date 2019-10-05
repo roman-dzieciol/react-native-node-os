@@ -28,11 +28,13 @@
     "/android/build.gradle",
     "/ios",
     "index.js",
-    "react-native-node-os.podspec"  
+    "react-native-node-os.podspec"
   ],
   "peerDependencies": {
     "react-native": ">=0.59.0-rc.0 <1.0.x"
   },
   "devDependencies": {
+    "react": "16.8.3",
+    "react-native": "0.59"
   }
 }

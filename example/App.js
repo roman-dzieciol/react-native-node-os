@@ -194,6 +194,26 @@ const _sections = [
       {key: 'PRIORITY_HIGHEST', value: NodeOs.constants.priority.PRIORITY_HIGHEST},
     ],
   },
+  {
+    title: 'os.getters',
+    data: [
+      {key: 'arch', value: '' + NodeOs.arch()},
+      {key: 'cpus', value: '' + JSON.stringify(NodeOs.cpus())},
+      {key: 'endianness', value: '' + NodeOs.endianness()},
+      {key: 'freemem', value: '' + NodeOs.freemem()},
+      {key: 'getPriority', value: '' + NodeOs.getPriority(0)},
+      {key: 'homedir', value: '' + NodeOs.homedir()},
+      {key: 'hostname', value: '' + NodeOs.hostname()},
+      {key: 'loadavg', value: '' + NodeOs.loadavg()},
+      {key: 'networkInterfaces', value: '' + JSON.stringify(NodeOs.networkInterfaces())},
+      {key: 'platform', value: '' + NodeOs.platform()},
+      {key: 'release', value: '' + NodeOs.release()},
+      {key: 'type', value: '' + NodeOs.type()},
+      {key: 'tmpdir', value: '' + NodeOs.tmpdir()},
+      {key: 'totalmem', value: '' + NodeOs.totalmem()},
+      {key: 'uptime', value: '' + NodeOs.uptime()},
+    ],
+  },
 ];
 
 export default () => {
